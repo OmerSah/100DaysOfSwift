@@ -31,3 +31,17 @@ operateIntegers(first: 5, second: 6) {
     $0 * $1
 } // 30
 
+// Returning closures and capturing values
+func howToAdd() -> (Int,Int) -> Int {
+    var count = 0
+    return {
+        // We can capture count values in every call
+        count += 1
+        print("\(count) times called.")
+        return $0 + $1
+    }
+}
+// Usage of returned closures
+let add = howToAdd() 
+add(3,4) // 1 times called. - 7
+add(5,8) // 2 times called. - 13
