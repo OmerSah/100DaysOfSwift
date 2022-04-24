@@ -30,7 +30,11 @@ class ViewController: UIViewController {
         button1.layer.borderColor = UIColor.lightGray.cgColor
         button1.layer.borderColor = UIColor.lightGray.cgColor
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Score", style: .done, target: self, action: #selector(showScore))
+        
         askQuestion()
+        
+        
     }
     
     func askQuestion(action: UIAlertAction! = nil) {
@@ -40,7 +44,7 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         correctAnswer = Int.random(in: 0...2)
-        title = countries[correctAnswer].uppercased() + " Score: \(score)"
+        title = countries[correctAnswer].uppercased()
         
     }
 
@@ -71,6 +75,12 @@ class ViewController: UIViewController {
         let ac = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: alertActionTitle, style: .default, handler: askQuestion))
         present(ac, animated: true)
+    }
+    // Shows the score and dismiss the alert controller with UIAlertAction
+    @objc func showScore() {
+        let ac = UIAlertController(title: "Score", message: "Your score is \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(ac,animated: true)
     }
 }
 
